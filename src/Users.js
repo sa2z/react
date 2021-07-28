@@ -1,7 +1,9 @@
 // import React, { useEffect, useReducer } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { asyncReducer } from "./asyncReducer";
 import useAsync from "./useAsync";
+import User from "./User";
 
 async function getUsers() {
   const response = await axios.get(
@@ -33,6 +35,7 @@ function Users() {
   // }, []);
 
   const [state, refetch] = useAsync(getUsers, [], true);
+  const [userId, setUserId] = useState(null);
 
   const { loading, data: users, error } = state;
   if (loading) return <div>로딩중 ... </div>;
@@ -43,12 +46,13 @@ function Users() {
     <>
       <ul>
         {users.map((users) => (
-          <li key={users.id}>
+          <li key={users.id} onClick={() => setUserId(users.id)}>
             {users.username} ({users.name})
           </li>
         ))}
       </ul>
       <button onClick={refetch}>다시 불러오기</button>
+      {userId && <User id={userId} />}
     </>
   );
 }
