@@ -1,11 +1,8 @@
 {
-  "name": "react",
+  "name": "react-api",
   "version": "1.0.0",
-  "description": "React example starter project",
-  "keywords": [
-    "react",
-    "starter"
-  ],
+  "description": "react api practice",
+  "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "axios": "0.21.1",
